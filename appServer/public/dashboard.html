@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | SMS Gateway</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css?v=2">
+    <script>
+        // Redirect to login if not authenticated
+        if (!localStorage.getItem('jwt')) {
+            window.location.href = 'index.html';
+        }
+    </script>
+</head>
+
+<body>
+
+    <!-- Toast Notification Container -->
+    <div id="toastContainer" class="toast-container"></div>
+
+    <main class="dashboard-layout">
+        <!-- Sidebar Navigation -->
+        <aside class="dash-sidebar">
+            <div class="dash-brand">
+                <a href="index.html" class="logo">GATEWAY CP</a>
+                <span style="display: block; font-size: 10px; color: var(--text-muted); margin-top: 4px;">Developer
+                    Portal</span>
+            </div>
+
+            <nav class="dash-nav">
+                <a href="#" class="dash-nav-item active" onclick="switchView('devices', this)">
+                    <span class="icon">📱</span> Devices & Keys
+                </a>
+                <a href="#" class="dash-nav-item" onclick="switchView('inbox', this)">
+                    <span class="icon">📥</span> Inbox
+                </a>
+                <a href="#" class="dash-nav-item" onclick="switchView('outbox', this)">
+                    <span class="icon">📤</span> Outbox
+                </a>
+            </nav>
+
+            <div class="dash-user">
+                <div class="user-avatar" id="avatarDisplay">U</div>
+                <div class="user-info">
+                    <span id="usernameDisplay" class="username">User</span>
+                    <span class="role">Admin</span>
+                </div>
+                <button class="logout-btn" onclick="logout()" title="Logout">🚪</button>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <section class="dash-content">
+            <header class="dash-header">
+                <div class="header-titles">
+                    <h2 id="viewTitle">Device Management</h2>
+                    <p id="viewSubtitle">Manage your active hardware gateways and their API access keys.</p>
+                </div>
+                <div style="display: flex; gap: 10px;">
+                    <button class="btn primary-btn add-device-btn" id="headerActionBtn" onclick="openAddDeviceModal()">
+                        <span style="margin-right: 6px;">+</span> Register New Device
+                    </button>
+                    <button class="btn outline-btn" id="sendSmsBtn" style="display: none;" onclick="openSendSmsModal()">
+                        <span style="margin-right: 6px;">✉️</span> Send SMS
+                    </button>
+                </div>
+            </header>
+
+            <div class="dash-body">
+                <!-- Devices View -->
+                <div id="view-devices" class="view-section active">
+                    <!-- Statistics Row -->
+                    <div class="stats-grid">
+                        <div class="glass-card stat-card">
+                            <div class="stat-icon">📡</div>
+                            <div class="stat-details">
+                                <h4>Active Devices</h4>
+                                <span class="stat-value" id="activeDevicesCount">0</span>
+                            </div>
+                        </div>
+                        <div class="glass-card stat-card">
+                            <div class="stat-icon">✉️</div>
+                            <div class="stat-details">
+                                <h4>Total Gateways Allowed</h4>
+                                <span class="stat-value">Unlimited</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Device List Section -->
+                    <div class="device-section">
+                        <h3 class="section-title">Connected Android Gateways</h3>
+                        <div class="device-list-container" id="deviceList">
+                            <!-- Populated by JS -->
+                            <div class="glass-card empty-state">
+                                <div class="empty-icon">📱</div>
+                                <h3>No Devices Connected</h3>
+                                <p>Register your first Android device to generate an API key.</p>
+                                <button class="btn outline-btn" style="margin-top: 1rem;"
+                                    onclick="openAddDeviceModal()">Register Device</button>
+                            </div>
+                        </div>
+                    </div>
+                </div> <!-- End Devices View -->
+
+                <!-- Inbox View -->
+                <div id="view-inbox" class="view-section" style="display: none;">
+                    <div class="device-section">
+                        <div
+                            style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem;">
+                            <h3 class="section-title" style="margin-bottom: 0;">Received Messages</h3>
+                            <button class="btn icon-btn" onclick="fetchInbox()" title="Refresh">🔄 Refresh</button>
+                        </div>
+                        <div class="glass-card table-container">
+                            <table class="sms-table" id="inboxTable">
+                                <thead>
+                                    <tr>
+                                        <th>Sender</th>
+                                        <th>Message</th>
+                                        <th>Received At</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td colspan="3" style="text-align: center; padding: 2rem;">Loading
+                                            messages...</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Outbox View -->
+                <div id="view-outbox" class="view-section" style="display: none;">
+                    <div class="device-section">
+                        <div
+                            style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem;">
+                            <h3 class="section-title" style="margin-bottom: 0;">Sent Messages</h3>
+                            <button class="btn icon-btn" onclick="fetchOutbox()" title="Refresh">🔄 Refresh</button>
+                        </div>
+                        <div class="glass-card table-container">
+                            <table class="sms-table" id="outboxTable">
+                                <thead>
+                                    <tr>
+                                        <th>Receiver</th>
+                                        <th>Message</th>
+                                        <th>Status</th>
+                                        <th>Created At</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td colspan="4" style="text-align: center; padding: 2rem;">Loading
+                                            messages...</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </div> <!-- End dash-body -->
+        </section>
+    </main>
+
+    <!-- Add Device Modal -->
+    <div id="addDeviceModal" class="modal">
+        <div class="modal-content glass-modal">
+            <div class="modal-header">
+                <h2>Register New Device</h2>
+                <button class="close-btn" onclick="closeAddDeviceModal()">&times;</button>
+            </div>
+            <form id="addDeviceForm" onsubmit="handleGenerateKey(event)">
+                <p style="color: var(--text-muted); font-size: 13px; margin-bottom: 1.5rem;">
+                    Enter a recognizable name for this device (e.g., 'Kitchen Tablet' or 'Pixel 7'). An API key will be
+                    generated for it.
+                </p>
+                <div class="input-group">
+                    <input type="text" id="deviceNameInput" placeholder=" " required autocomplete="off">
+                    <label for="deviceNameInput">Device Name</label>
+                </div>
+
+                <div class="modal-actions" style="margin-top: 2rem; display: flex; gap: 1rem;">
+                    <button type="button" class="btn outline-btn" onclick="closeAddDeviceModal()"
+                        style="flex: 1;">Cancel</button>
+                    <button type="submit" id="generateKeyBtn" class="btn primary-btn" style="flex: 1;">Generate API
+                        Key</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Send SMS Modal -->
+    <div id="sendSmsModal" class="modal">
+        <div class="modal-content glass-modal">
+            <div class="modal-header">
+                <h2>Send SMS</h2>
+                <button class="close-btn" onclick="closeSendSmsModal()">&times;</button>
+            </div>
+            <form id="sendSmsForm" onsubmit="handleSendSms(event)">
+                <p style="color: var(--text-muted); font-size: 13px; margin-bottom: 1.5rem;">
+                    Queue an outbound SMS to be sent by your connected Android Gateway.
+                </p>
+                <div class="input-group">
+                    <input type="text" id="smsReceiverInput" placeholder=" " required autocomplete="off">
+                    <label for="smsReceiverInput">Receiver Number (e.g., +4912345678)</label>
+                </div>
+                <div class="input-group">
+                    <textarea id="smsBodyInput" placeholder=" " required rows="4"
+                        style="width: 100%; padding: 10px 12px; background: rgba(13, 17, 23, 0.6); border: 1px solid var(--border); border-radius: 6px; color: var(--text-bright); font-size: 13px; resize: vertical;"></textarea>
+                </div>
+
+                <div class="modal-actions" style="margin-top: 2rem; display: flex; gap: 1rem;">
+                    <button type="button" class="btn outline-btn" onclick="closeSendSmsModal()"
+                        style="flex: 1;">Cancel</button>
+                    <button type="submit" id="sendSmsModalBtn" class="btn primary-btn" style="flex: 1;">Queue
+                        Message</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/main.js?v=5"></script>
+    <script>
+        // Check Auth
+        if (!localStorage.getItem('jwt')) {
+            window.location.href = 'index.html';
+        } else {
+            // Initialize dashboard specifically calling fetch to populate data
+            fetchDashboardData();
+        }
+    </script>
+</body>
+
+</html>

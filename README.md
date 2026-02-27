@@ -15,6 +15,9 @@ Do you have a project that needs to send real SMS text messages (like Home Assis
 If you don't want to host the server yourself, you can use our public testing server:
 **`https://api-sms.ndemme.de/`**
 
+> [!TIP]
+> We are currently working on providing official Docker containers so that system administrators can easily self-host the server on their own infrastructure! Stay tuned.
+
 ## 🛠️ What do I need?
 - **An Android Phone:** Any phone running Android 8.0 or newer.
 - **A SIM Card:** With a plan that allows sending and receiving SMS.

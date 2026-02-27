@@ -43,6 +43,9 @@ Go to our website and register to get your personal, secret "API Key". You will 
 3. Enter your secret **API Key**.
 4. Press the Start button! 
 
+> [!TIP]
+> **For the best performance:** We highly recommend enabling **Developer Mode** on your Android device and turning on the "Stay awake" setting (so the screen never turns off while charging). Keep the app running in the **foreground** and leave the phone plugged in to ensure it never goes to sleep and never misses an SMS!
+
 Now you can use our simple API to send SMS from your own projects directly through your phone!
 
 ## 📄 License

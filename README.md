@@ -2,40 +2,48 @@
 
 > [!WARNING]
 > **Project Status: Alpha**
-> This project is currently in early alpha development. You may encounter bugs, service interruptions, or server downs.
-> **Official Go-Live: March 10th, 2026**
+> This project is still in its early testing phase (Alpha). You might encounter bugs or times when the server is down. 
+> **Official Go-Live Date: March 10th, 2026**
 
-**Turn your Android device into a high-performance SMS infrastructure bridge.**
+**Turn your Android phone into a bridge that sends and receives SMS for your smart home, bots, or apps!**
 
-![App Screenshot](https://example.com/path/to/your/image.png)
+Do you have a project that needs to send real SMS text messages (like Home Assistant, a custom app, or a smart device)? Instead of paying expensive online services, you can just use your own Android phone and your own SIM card!
 
-## 🌐 Default API Endpoint
-For the public staging/alpha environment, use:
+![App Interface](https://sms.ndemme.de/img/interface.png)
+
+## 🌐 Default Server
+If you don't want to host the server yourself, you can use our public testing server:
 **`https://api-sms.ndemme.de/`**
 
-The Android SMS Gateway project allows you to use your own SIM plan to send and receive SMS messages via a secure REST API. Perfectly suited for smart home automation, OTP delivery, and local notification systems without relying on expensive third-party providers.
+## 🛠️ What do I need?
+- **An Android Phone:** Any phone running Android 8.0 or newer.
+- **A SIM Card:** With a plan that allows sending and receiving SMS.
+- **Internet:** Wi-Fi or mobile data so the phone can talk to the server.
+- **Power:** Leave the phone plugged into a charger so it never turns off!
 
-## ✨ Key Features
-- **Bi-Directional High-Speed Sync:** Sub-50ms latency for message transmission via hardware SIM.
-- **Hybrid Security:** Enterprise-grade security with JWT for dashboard access and per-device API Keys.
-- **Unlimited Connectivity:** Connect Home Assistant, custom Web Apps, or IoT devices to a single gateway.
-- **Hardware Agnostic:** Compatible with any device running Android 8.0+.
+## 🚀 How to set it up (Step-by-Step)
 
-## 🛠️ Technical Requirements
-- **Platform:** Android 8.0+
-- **Network:** Stable Wi-Fi or 4G LTE connection
-- **Power:** Reliable power supply (highly recommended for 24/7 gateway operation)
+### Step 1: Install the App on your Phone
+Download and install our app on your Android phone:
+📥 **[Download the App here (APK)](https://sms.ndemme.de/img/app-release.apk)**
 
-## 🚀 Getting Started
-1. **Install the Android Gateway App:**
-   - 📥 [Download Alpha APK (Signed)](https://sms.ndemme.de/img/app-release.apk)
-   > [!NOTE]
-   > Google Play Protect may alert this app with a false positive warning. To be 100% sure of its security, we highly recommend cloning the repository and compiling the app yourself.
-2. **<a href="https://sms.ndemme.de/" target="_blank">Register a free account</a>** and generate your secure API Key.
-3. **Start Integrating** using our simple REST API.
+> [!NOTE]
+> **Google Play Protect Warning:** Because this app is downloaded from the internet and not the official Google Play Store, your phone might show a "Play Protect" warning. This is a false positive alarm. If you want to be 100% sure the app is safe, you can download the source code from this Git repository and compile the app yourself!
+
+### Step 2: Create a Free Account
+Go to our website and register to get your personal, secret "API Key". You will need this key to link your phone to the server.
+🔗 **<a href="https://sms.ndemme.de/" target="_blank">Click here to register a free account</a>**
+
+### Step 3: Connect and Go!
+1. Open the app on your phone.
+2. Enter the **Default Server URL** (see above).
+3. Enter your secret **API Key**.
+4. Press the Start button! 
+
+Now you can use our simple API to send SMS from your own projects directly through your phone!
 
 ## 📄 License
-This project is licensed under the [MIT License](LICENSE).
+This project is open-source and free to use under the [MIT License](LICENSE).
 
 ---
-*Built with ❤️ for the developer community.*
+*Built with ❤️ for everyday makers and developers.*

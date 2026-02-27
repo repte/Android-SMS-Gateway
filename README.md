@@ -27,7 +27,10 @@ The Android SMS Gateway project allows you to use your own SIM plan to send and 
 - **Power:** Reliable power supply (highly recommended for 24/7 gateway operation)
 
 ## 🚀 Getting Started
-1. **Clone the project** or install the Android Gateway App.
+1. **Install the Android Gateway App:**
+   - 📥 [Download Alpha APK (Unsigned)](https://sms.ndemme.de/img/app-release-unsigned.apk)
+   > [!NOTE]
+   > For maximum security, we highly recommend cloning the repository and compiling the app yourself.
 2. **<a href="https://sms.ndemme.de/" target="_blank">Register a free account</a>** and generate your secure API Key.
 3. **Start Integrating** using our simple REST API.
 

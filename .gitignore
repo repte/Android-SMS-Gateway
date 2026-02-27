@@ -1,0 +1,16 @@
+# Android
+.gradle/
+build/
+local.properties
+.idea/
+*.iml
+app/build/
+.cxx/
+captures/
+
+# Node Server
+appServer/
+
+# OS
+.DS_Store
+Thumbs.db

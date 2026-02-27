@@ -7,6 +7,8 @@
 
 **Turn your Android device into a high-performance SMS infrastructure bridge.**
 
+![App Screenshot](https://example.com/path/to/your/image.png)
+
 ## 🌐 Default API Endpoint
 For the public staging/alpha environment, use:
 **`https://api-sms.ndemme.de/`**

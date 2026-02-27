@@ -28,9 +28,7 @@ The Android SMS Gateway project allows you to use your own SIM plan to send and 
 
 ## 🚀 Getting Started
 1. **Install the Android Gateway App:**
-   - 📥 [Download Alpha APK (Unsigned)](https://sms.ndemme.de/img/app-release-unsigned.apk)
-   > [!NOTE]
-   > For maximum security, we highly recommend cloning the repository and compiling the app yourself.
+   - 📥 [Download Alpha APK (Signed)](https://sms.ndemme.de/img/app-release.apk)
 2. **<a href="https://sms.ndemme.de/" target="_blank">Register a free account</a>** and generate your secure API Key.
 3. **Start Integrating** using our simple REST API.
 

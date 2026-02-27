@@ -1,5 +1,10 @@
 # Android SMS Gateway 📱🚀
 
+> [!WARNING]
+> **Project Status: Alpha**
+> This project is currently in early alpha development. You may encounter bugs, service interruptions, or server downs.
+> **Official Go-Live: March 10th, 2026**
+
 **Turn your Android device into a high-performance SMS infrastructure bridge.**
 
 The Android SMS Gateway project allows you to use your own SIM plan to send and receive SMS messages via a secure REST API. Perfectly suited for smart home automation, OTP delivery, and local notification systems without relying on expensive third-party providers.
@@ -17,7 +22,7 @@ The Android SMS Gateway project allows you to use your own SIM plan to send and 
 
 ## 🚀 Getting Started
 1. **Clone the project** or install the Android Gateway App.
-2. **[Register a free account](https://sms.ndemme.de/)** and generate your secure API Key.
+2. **<a href="https://sms.ndemme.de/" target="_blank">Register a free account</a>** and generate your secure API Key.
 3. **Start Integrating** using our simple REST API.
 
 ## 📄 License

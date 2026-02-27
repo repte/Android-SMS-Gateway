@@ -1056,16 +1056,18 @@ footer {
 }
 
 .icon-btn {
-    padding: 6px;
+    padding: 6px 10px;
     background: transparent;
-    border: 1px solid transparent;
+    border: 1px solid var(--border);
     border-radius: 6px;
-    font-size: 14px;
+    font-size: 13px;
+    color: var(--text-muted);
     transition: all 0.2s;
 }
 
 .icon-btn:hover {
     background: rgba(255, 255, 255, 0.1);
+    color: var(--text-bright);
 }
 
 .danger-btn:hover {
@@ -1154,6 +1156,7 @@ footer {
     border: 1px solid transparent;
     font-family: inherit;
     white-space: nowrap;
+    color: var(--text-bright);
 }
 
 .btn:disabled {

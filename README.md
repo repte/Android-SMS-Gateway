@@ -7,6 +7,10 @@
 
 **Turn your Android device into a high-performance SMS infrastructure bridge.**
 
+## 🌐 Default API Endpoint
+For the public staging/alpha environment, use:
+**`https://api-sms.ndemme.de/`**
+
 The Android SMS Gateway project allows you to use your own SIM plan to send and receive SMS messages via a secure REST API. Perfectly suited for smart home automation, OTP delivery, and local notification systems without relying on expensive third-party providers.
 
 ## ✨ Key Features
